@@ -1,0 +1,129 @@
+C51 COMPILER V9.00   MAIN                                                                  07/13/2013 13:25:08 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "main.h"
+   2          
+   3          //定义变量
+   4          unsigned char temp = 0xfe;
+   5          unsigned char KEY_NUM = 0;
+   6          
+   7          unsigned char Display_word[4][4] = {
+   8          0x30,0x78,0x7C,0x3E,0x3E,0x7C,0x78,0x30,        //心形
+   9          
+  10          0x10,0x10,0x10,0x10,0x10,0x54,0x38,0x10,        //箭头
+  11          
+  12          
+  13          };
+  14          
+  15          //****************************************************
+  16          //主函数
+  17          //****************************************************
+  18          void main()
+  19          {
+  20   1              unsigned int i;
+  21   1              unsigned char j,k;
+  22   1              while(1)
+  23   1              {
+  24   2                      for(i = 0 ; i < 1000 ; i++)
+  25   2                      {
+  26   3                              temp = 0x7f;
+  27   3                              for(j = 0 ; j < 2 ; j++)                //显示前两个字母
+  28   3                              {
+  29   4                                      for(k = 0 ; k < 4 ; k++)                //一个字母4BYTE
+  30   4                                      {
+  31   5                                              Send_Byte(temp);                        //列选择
+  32   5                                              Send_Byte(Display_word[j][k]);                  //行数据
+  33   5                                              LEDARRAY_LAT = 1;                                       //锁存数据
+  34   5                                              _nop_();
+  35   5                                      
+  36   5                                              LEDARRAY_LAT = 0;
+  37   5                                              _nop_();
+  38   5                                              temp = (temp>>1)|0x80;
+  39   5                                      }
+  40   4                              }
+  41   3                      }
+  42   2      
+  43   2                      for(i = 0 ; i < 1000 ; i++)
+  44   2                      {
+  45   3                              temp = 0x7f;
+  46   3                              for(j = 2 ; j < 4 ; j++)                //显示前两个字母
+  47   3                              {
+  48   4                                      for(k = 0 ; k < 4 ; k++)                //一个字母4BYTE
+  49   4                                      {
+  50   5                                              Send_Byte(temp);                        //列选择
+  51   5                                              Send_Byte(Display_word[j][k]);                  //行数据
+  52   5                                              LEDARRAY_LAT = 1;                                       //锁存数据
+  53   5                                              _nop_();
+  54   5                                      
+  55   5                                              LEDARRAY_LAT = 0;
+C51 COMPILER V9.00   MAIN                                                                  07/13/2013 13:25:08 PAGE 2   
+
+  56   5                                              _nop_();
+  57   5                                              temp = (temp>>1)|0x80;
+  58   5                                      }
+  59   4                              }
+  60   3                      }
+  61   2                      
+  62   2                                              
+  63   2              }
+  64   1      }
+  65          
+  66          //****************************************************
+  67          //发送一个字节数据
+  68          //****************************************************
+  69          void Send_Byte( unsigned char dat)
+  70          {
+  71   1              unsigned char i;
+  72   1              LEDARRAY_CLK = 0;
+  73   1              _nop_();        
+  74   1              LEDARRAY_LAT = 0;
+  75   1              _nop_();
+  76   1      
+  77   1              for( i = 0 ; i < 8 ; i++ )
+  78   1              {
+  79   2                      if( dat&0x01 )
+  80   2                      {
+  81   3                              LEDARRAY_DI = 1;        
+  82   3                      }
+  83   2                      else
+  84   2                      {
+  85   3                              LEDARRAY_DI = 0;
+  86   3                      }
+  87   2                      
+  88   2                      LEDARRAY_CLK = 1;                               //上升沿发送数据
+  89   2                      //                              _nop_();
+  90   2                      LEDARRAY_CLK = 0;
+  91   2                      //                              _nop_();
+  92   2                                      
+  93   2                      dat >>= 1;                      
+  94   2              }               
+  95   1      }
+  96          //****************************************************
+  97          //MS延时函数(12M晶振下测试)
+  98          //****************************************************
+  99          void Delay_ms(unsigned int n)
+ 100          {
+ 101   1              unsigned int  i,j;
+ 102   1              for(i=0;i<n;i++)
+ 103   1                      for(j=0;j<123;j++);
+ 104   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    222    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     18       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,173 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        07/13/2013  13:27:51  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE main.obj TO main RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  main (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0012H     UNIT         ?DT?MAIN
+            DATA    001AH     0002H     UNIT         _DATA_GROUP_
+            IDATA   001CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0078H     UNIT         ?PR?MAIN?MAIN
+            CODE    0107H     002CH     UNIT         ?PR?_SEND_BYTE?MAIN
+            CODE    0133H     0020H     UNIT         ?PR?_DELAY_MS?MAIN
+            CODE    0153H     0019H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   main (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                  001AH    0002H
+  +--> ?PR?_SEND_BYTE?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  main (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2013  13:27:51  PAGE 2
+
+
+  D:0090H         PUBLIC        P1
+  C:0114H         PUBLIC        _Send_Byte
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  B:0080H.1       PUBLIC        LEDARRAY_CLK
+  D:00B8H         PUBLIC        IP
+  B:0080H.0       PUBLIC        LEDARRAY_LAT
+  C:008FH         PUBLIC        main
+  C:0133H         PUBLIC        _Delay_ms
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:0008H         PUBLIC        temp
+  D:0009H         PUBLIC        KEY_NUM
+  B:0080H.2       PUBLIC        LEDARRAY_DI
+  D:00C8H         PUBLIC        T2CON
+  D:000AH         PUBLIC        Display_word
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  -------         DO            
+  D:001AH         SYMBOL        j
+  D:001BH         SYMBOL        k
+  -------         ENDDO         
+  C:008FH         LINE#         27
+  C:008FH         LINE#         28
+  C:008FH         LINE#         30
+  C:008FH         LINE#         31
+  C:008FH         LINE#         32
+  C:0092H         LINE#         33
+  C:0095H         LINE#         34
+  C:0095H         LINE#         35
+  C:0098H         LINE#         36
+  C:0098H         LINE#         37
+  C:009DH         LINE#         38
+  C:00A2H         LINE#         39
+  C:00A7H         LINE#         40
+  C:00AAH         LINE#         41
+  C:00ACH         LINE#         42
+  C:00ADH         LINE#         44
+  C:00AFH         LINE#         45
+  C:00B0H         LINE#         46
+  C:00B8H         LINE#         47
+  C:00C1H         LINE#         48
+  C:00CAH         LINE#         50
+  C:00CDH         LINE#         51
+  C:00D7H         LINE#         52
+  C:00D7H         LINE#         53
+  C:00DAH         LINE#         54
+  C:00DAH         LINE#         55
+  C:00DFH         LINE#         56
+  C:00E2H         LINE#         57
+  C:00E7H         LINE#         58
+  C:00ECH         LINE#         59
+  C:00EEH         LINE#         60
+  C:00EFH         LINE#         62
+  C:00F1H         LINE#         63
+  C:00F2H         LINE#         64
+  C:00FAH         LINE#         65
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2013  13:27:51  PAGE 3
+
+
+  C:0103H         LINE#         66
+  -------         ENDPROC       MAIN
+  -------         PROC          L?0031
+  -------         ENDPROC       L?0031
+  -------         PROC          _SEND_BYTE
+  D:0007H         SYMBOL        dat
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:0114H         LINE#         75
+  C:0114H         LINE#         76
+  C:0114H         LINE#         78
+  C:0116H         LINE#         79
+  C:0117H         LINE#         80
+  C:0119H         LINE#         81
+  C:011AH         LINE#         83
+  C:011CH         LINE#         84
+  C:011CH         LINE#         85
+  C:0120H         LINE#         86
+  C:0120H         LINE#         87
+  C:0122H         LINE#         88
+  C:0124H         LINE#         90
+  C:0124H         LINE#         91
+  C:0126H         LINE#         92
+  C:0126H         LINE#         94
+  C:0128H         LINE#         96
+  C:012AH         LINE#         99
+  C:012EH         LINE#         100
+  C:0132H         LINE#         101
+  -------         ENDPROC       _SEND_BYTE
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        n
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0133H         LINE#         105
+  C:0133H         LINE#         106
+  C:0133H         LINE#         108
+  C:013DH         LINE#         109
+  C:0152H         LINE#         110
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?MAIN
+
+Program Size: data=29.0 xdata=0 code=364
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,17 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+C:\Documents and Settings\Administrator\桌面\模块例程\8_8点阵资料包\2.点阵例程\1块级联静止显示\main.uvproj
+Project File Date:  06/02/2013
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?MAIN
+Program Size: data=31.0 xdata=0 code=390
+creating hex file from "main"...
+"main" - 0 Error(s), 1 Warning(s).
